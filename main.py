@@ -34,12 +34,12 @@ async def show_form(request: Request):
 
 # Handle form submission
 @app.post("/submit/", response_class=HTMLResponse)
-async def submit_form(request: Request, name: str = Form(...), email: str = Form(...)):
+async def submit_form(request: Request, name: str = Form(...),emp_id: str = Form(...)):
     # Insert into DynamoDB
-    response = table.put_item(Item={"name": name, "email": email})
-    print(name,email)
+    response = table.put_item(Item={"name": name, "emp_id": emp_id})
+    print(name,emp_id)
     return templates.TemplateResponse("index.html", {
         "request": request,
-        "message": "✅ Data submitted successfully!"
+        "message": "Data submitted successfully!"
     })
 
